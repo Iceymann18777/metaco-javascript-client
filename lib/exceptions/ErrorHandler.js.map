@@ -1,0 +1,1 @@
+{"version":3,"sources":["exceptions/ErrorHandler.js"],"names":[],"mappings":";;;;;;;;;;;;;;;;;;;;;;;QAAa,YAAY;iBAAZ,YAAY;kCAAZ,YAAY;;;qBAAZ,YAAY;;mBACH,uBAAG,EAEpB;;;eAHQ,YAAY","file":"exceptions/ErrorHandler.js","sourcesContent":["export class ErrorHandler {\r\n    static HandleError() {\r\n\r\n    }\r\n}"],"sourceRoot":"/source/"}

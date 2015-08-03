@@ -3,13 +3,18 @@
 <head>
     <meta charset="utf-8">
     <title>title</title>
-    <script src="../../dist/metaco-api-client.min.js"></script>
+    <script src="../../dist/metaco.api.client.js"></script>
     <script type="text/javascript">
-        var builder = new MetacoClientBuilder();
+        var builder = metaco.GetClientBuilder();
 
-        var client = builder.withApiUrl("http://metaco-dev-api-testnet.azurewebsites.net/v1/").makeClient();
+        var client = builder.withApiUrl("http://api.testnet.metaco.com/v1/").makeClient();
 
-        client.getAssets().then(function (assets) {
+        client.getAssets(function(err, assets) {
+            if (err) {
+                console.log(err);
+                return;
+            }
+
             console.log(assets);
         });
     </script>

@@ -5,15 +5,15 @@ module.exports = function(config) {
         frameworks: ['browserify', 'source-map-support', 'jasmine'],
 
         files: [
-            'src/**/*.js',
-            'test/**/*.js'
+            'lib/**/*.js',
+            'test/browser/**/*.js'
         ],
 
         exclude: [
         ],
 
         preprocessors: {
-            'src/**/*.js': ['browserify'],
+            'lib/**/*.js': ['browserify'],
             'test/**/*.js': ['browserify', 'env']
         },
 
@@ -25,8 +25,7 @@ module.exports = function(config) {
         ],
 
         browserify: {
-            debug: true,
-            transform: [ 'babelify' ]
+            debug: true
         },
 
         browsers: ['PhantomJS'],

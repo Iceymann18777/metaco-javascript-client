@@ -1,8 +1,6 @@
-import {MetacoClientBuilder} from "../src/MetacoClientBuilder"
-
-describe('MetacoClientBuilder', () => {
-    it("should build a client", () => {
-        var builder = new MetacoClientBuilder();
+describe('MetacoClientBuilder', function () {
+    it("should build a client", function (){
+        var builder = new window.metaco.GetClientBuilder();
 
         var client = builder
             .withApiId("ID")

@@ -6,11 +6,27 @@ const DEFAULT_API_URL = "http://api.testnet.metaco.com/v1/";
 
 var TestUtils = {};
 
+TestUtils.getMetacoModule = function () {
+    if (process) {
+        return require("../../lib/index");
+    } else {
+        return window.metaco;
+    }
+};
+
+TestUtils.getEnvironmentVariable = function (variable) {
+    if (process) {
+        return process.env[variable];
+    } else {
+        return window.__env__[variable];
+    }
+};
+
 TestUtils.getMetacoAnonymousClient = function() {
 
-    var apiUrl = window.__env__[METACO_ENV_API_URL_NAME];
+    var apiUrl = TestUtils.getEnvironmentVariable(METACO_ENV_API_URL_NAME);
 
-    var builder = new window.metaco.GetClientBuilder();
+    var builder = TestUtils.getMetacoModule().GetClientBuilder();
 
     return builder
         .withApiUrl(apiUrl)

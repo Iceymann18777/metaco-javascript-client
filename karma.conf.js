@@ -6,7 +6,7 @@ module.exports = function(config) {
 
         files: [
             'lib/**/*.js',
-            'test/browser/**/*.js'
+            'test/**/*.js'
         ],
 
         exclude: [

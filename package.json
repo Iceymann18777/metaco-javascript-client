@@ -4,6 +4,7 @@
   "description": "The official javascript client for the Metaco API",
   "main": "index.js",
   "dependencies": {
+    "request": "^2.60.0"
   },
   "devDependencies": {
     "browserify": "^11.0.1",

@@ -1,15 +1,16 @@
 var TestUtils = require("./helpers/TestUtils");
 
-describe('MetacoClientBuilder', function () {
+describe('MetacoClient (Assets)', function () {
 
     beforeEach(function() {
-        this.client = TestUtils.getMetacoAnonymousClient();
+        this.client = TestUtils.getMetacoAnonymousClient()
+            .makeClient();
     });
 
     it("should get the assets", function (done) {
         this.client.getAssets(function (err, assets) {
             if (err) {
-                fail("The request failed", err);
+                fail("Assets fetch failed : " + err);
                 return done();
             }
 
@@ -21,7 +22,7 @@ describe('MetacoClientBuilder', function () {
     it("should get the asset", function (done) {
         this.client.getAsset("MTC:USD", function (err, asset) {
             if (err) {
-                fail("The request failed", err);
+                fail("Asset fetch failed : " + err);
                 return done();
             }
             expect(asset.definition.ticker).toBe("MTC:USD");
@@ -47,7 +48,7 @@ describe('MetacoClientBuilder', function () {
 
         this.client.getAssetHistory(timestampThirtyMinutesAgo, currentTimestamp, "10m", true, "USD", function (err, history) {
             if (err) {
-                fail("The request failed", err);
+                fail("Asset history fetch failed : " + err);
                 return done();
             }
             expect(history.assets.length).toBe(1);
@@ -62,7 +63,7 @@ describe('MetacoClientBuilder', function () {
 
         this.client.getAssetHistory(timestampThirtyMinutesAgo, currentTimestamp, "10m", true, "RTY", function (err, history) {
             if (err) {
-                fail("The request failed", err);
+                fail("Asset history fetch failed : " + err);
                 return done();
             }
             expect(history.assets.length).toBe(0);

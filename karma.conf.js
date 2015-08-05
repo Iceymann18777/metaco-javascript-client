@@ -28,7 +28,18 @@ module.exports = function(config) {
             debug: true
         },
 
-        browsers: ['PhantomJS'],
-        singleRun: false
+        customLaunchers: {
+            'PhantomJS_withoutCORS': {
+                base: 'PhantomJS',
+                options: {
+                    settings: {
+                        webSecurityEnabled: false
+                    }
+                }
+            }
+        },
+
+        browsers: ['PhantomJS_withoutCORS'],
+        singleRun: true
     });
 };

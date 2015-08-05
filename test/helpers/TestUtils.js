@@ -7,7 +7,7 @@ const DEFAULT_API_URL = "http://api.testnet.metaco.com/v1/";
 var TestUtils = {};
 
 TestUtils.getMetacoModule = function () {
-    if (process) {
+    if (process && process.title !== "browser") {
         return require("../../lib/index");
     } else {
         return window.metaco;
@@ -15,7 +15,7 @@ TestUtils.getMetacoModule = function () {
 };
 
 TestUtils.getEnvironmentVariable = function (variable) {
-    if (process) {
+    if (process && process.title !== "browser") {
         return process.env[variable];
     } else {
         return window.__env__[variable];
@@ -30,8 +30,7 @@ TestUtils.getMetacoAnonymousClient = function() {
 
     return builder
         .withApiUrl(apiUrl)
-        .withTestingMode(true)
-        .makeClient();
+        .withTestingMode(true);
 };
 
 TestUtils.getMetacoAuthenticatedClient = function() {
@@ -45,8 +44,7 @@ TestUtils.getMetacoAuthenticatedClient = function() {
         .withApiId(apiId)
         .withApiKey(apiKey)
         .withApiUrl(apiUrl)
-        .withTestingMode(true)
-        .makeClient();
+        .withTestingMode(true);
 };
 
 TestUtils.getBitcoinAddress = function() {

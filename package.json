@@ -7,6 +7,8 @@
     "request": "^2.60.0"
   },
   "devDependencies": {
+    "bigi": "^1.4.0",
+    "bitcoinjs-lib": "^1.5.7",
     "browserify": "^11.0.1",
     "gulp": "^3.9.0",
     "gulp-sourcemaps": "^1.5.2",
@@ -20,6 +22,7 @@
     "karma-env-preprocessor": "^0.1.1",
     "karma-jasmine": "^0.3.6",
     "karma-phantomjs-launcher": "^0.2.0",
+    "karma-phantomjs-shim": "^1.0.0",
     "karma-source-map-support": "^1.0.0",
     "phantomjs": "^1.9.17",
     "vinyl-buffer": "^1.0.0",

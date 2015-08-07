@@ -2,8 +2,7 @@ module.exports = function(config) {
     config.set({
 
         basePath: '',
-        frameworks: ['browserify', 'source-map-support', 'jasmine'],
-
+        frameworks: ['phantomjs-shim', 'browserify', 'source-map-support', 'jasmine'],
         files: [
             'lib/**/*.js',
             'test/**/*.js'
@@ -27,6 +26,10 @@ module.exports = function(config) {
         browserify: {
             debug: true
         },
+
+        browserDisconnectTimeout : 10000, // default 2000
+        browserDisconnectTolerance : 1, // default 0
+        browserNoActivityTimeout : 60000, //default 10000
 
         customLaunchers: {
             'PhantomJS_withoutCORS': {

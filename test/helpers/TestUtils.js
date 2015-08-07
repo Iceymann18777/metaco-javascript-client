@@ -1,3 +1,6 @@
+var bitcoinjs = require("bitcoinjs-lib");
+var BigInteger = require("bigi");
+
 const METACO_ENV_API_URL_NAME = "METACO_ENV_API_URL";
 const METACO_ENV_API_ID_NAME = "METACO_ENV_API_ID";
 const METACO_ENV_API_KEY_NAME = "METACO_ENV_API_KEY";
@@ -34,11 +37,11 @@ TestUtils.getMetacoAnonymousClient = function() {
 };
 
 TestUtils.getMetacoAuthenticatedClient = function() {
-    var apiUrl = window.__env__[METACO_ENV_API_URL_NAME];
-    var apiId = window.__env__[METACO_ENV_API_ID_NAME];
-    var apiKey = window.__env__[METACO_ENV_API_KEY_NAME];
+    var apiUrl = TestUtils.getEnvironmentVariable(METACO_ENV_API_URL_NAME);
+    var apiId = TestUtils.getEnvironmentVariable(METACO_ENV_API_ID_NAME);
+    var apiKey = TestUtils.getEnvironmentVariable(METACO_ENV_API_KEY_NAME);
 
-    var builder = new MetacoClientBuilder();
+    var builder = TestUtils.getMetacoModule().GetClientBuilder();
 
     return builder
         .withApiId(apiId)
@@ -48,11 +51,24 @@ TestUtils.getMetacoAuthenticatedClient = function() {
 };
 
 TestUtils.getBitcoinAddress = function() {
-
+    var hexPrivateKey = TestUtils.getEnvironmentVariable(METACO_ENV_WALLET_PRIVATE_KEY_HEX_NAME);
+    var D = BigInteger.fromHex(hexPrivateKey);
+    var privateKey = new bitcoinjs.ECKey(D);
+    return privateKey.pub.getAddress(bitcoinjs.networks.testnet).toBase58Check();
 };
 
-TestUtils.GetHexSignedTransaction = function() {
+TestUtils.getHexSignedTransaction = function(txToSign) {
+    var hexPrivateKey = TestUtils.getEnvironmentVariable(METACO_ENV_WALLET_PRIVATE_KEY_HEX_NAME);
+    var D = BigInteger.fromHex(hexPrivateKey);
+    var privateKey = new bitcoinjs.ECKey(D);
 
+    var transaction = bitcoinjs.Transaction.fromHex(txToSign.raw);
+
+    for (var i = 0; i < txToSign.inputs_to_sign.length; i++) {
+        transaction.sign(txToSign.inputs_to_sign[i].index, privateKey, bitcoinjs.Transaction.SIGHASH_ALL);
+    }
+
+    return transaction.toHex();
 };
 
 module.exports = TestUtils;

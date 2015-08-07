@@ -44,10 +44,10 @@ describe('MetacoClient (Accounts)', function () {
                     expect(accountStatus.apiId).toBe(account.apiId);
                     expect(accountStatus.KYC1).toBe(true);
                     expect(accountStatus.KYC2).toBe(false);
-                    expect(accountStatus.max_order_chf_value).toBe(500);
-                    expect(accountStatus.max_yearly_chf_order.remaining).toBe(5000);
+                    expect(accountStatus.max_order_chf_value).toBe(50000000);
+                    expect(accountStatus.max_yearly_chf_order.remaining).toBe(50000000);
                     expect(accountStatus.max_yearly_chf_order.current).toBe(0);
-                    expect(accountStatus.max_yearly_chf_order.max).toBe(5000);
+                    expect(accountStatus.max_yearly_chf_order.max).toBe(50000000);
 
 
                     /** Can't double validate account **/
@@ -63,7 +63,7 @@ describe('MetacoClient (Accounts)', function () {
                 });
             });
         });
-    });
+    }, 10000);
 
     it("should not be able to register invalid account", function (done) {
         this.client.registerAccount("", function (err, account) {

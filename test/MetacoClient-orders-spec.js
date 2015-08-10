@@ -19,7 +19,7 @@ describe('MetacoClient (Orders)', function () {
             null,
             function (err, order) {
                 if (err) {
-                    fail("Failed to create order : " + err );
+                    fail("Failed to create order : " + JSON.stringify(err) );
                     return done();
                 }
                 expect(order.amount_asset).toBe(100);

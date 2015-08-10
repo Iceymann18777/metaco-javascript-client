@@ -1,0 +1,39 @@
+{
+  "name": "metaco-client",
+  "main": "dist/metaco.api.client.min.js",
+  "version": "1.0.0",
+  "homepage": "https://metaco.com",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/MetacoSA/metaco-javascript-client.git"
+  },
+  "authors": [
+    {
+      "name": "Metaco",
+      "email": "development@metaco.com",
+      "url": "https://metaco.com"
+    },
+    {
+      "name": "Alexis Chevalier",
+      "email": "alexis.chevalier1@gmail.com"
+    }
+  ],
+  "description": "The official javascript client for the Metaco API",
+  "moduleType": [
+    "globals"
+  ],
+  "keywords": [
+    "bitcoin",
+    "smartcontracts",
+    "api",
+    "metaco"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}

@@ -5,6 +5,7 @@ var browserify = require('browserify');
 var source = require('vinyl-source-stream');
 var buffer = require('vinyl-buffer');
 var gutil = require('gulp-util');
+var release = require('gulp-github-release');
 
 gulp.task("buildBrowser", function () {
 
@@ -29,4 +30,13 @@ gulp.task("buildBrowser", function () {
         .on('error', gutil.log)
         .pipe(sourcemaps.write('./'))
         .pipe(gulp.dest('./dist/'));
+});
+
+gulp.task("github-releases", function () {
+    gulp.src('./dist/*')
+        .pipe(release({
+            repo: "metaco-javascript-client",
+            owner: "MetacoSA",
+            manifest: require('./package.json')
+        }));
 });

@@ -47,7 +47,7 @@ Run `npm test`
 Contributing
 ----------------------------------------------
 1. Fork this repository and make your changes in your fork
-2. Add or Update the tests and run `mvn clean test` to make sure they pass
+2. Add or Update the tests and run `npm test` to make sure they pass
 3. Commit and push your changes to your fork `git push origin master`
 4. Submit a pull request and we will handle the rest :)
 

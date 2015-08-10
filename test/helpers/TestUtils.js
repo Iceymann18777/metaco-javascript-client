@@ -63,12 +63,13 @@ TestUtils.getHexSignedTransaction = function(txToSign) {
     var privateKey = new bitcoinjs.ECKey(D);
 
     var transaction = bitcoinjs.Transaction.fromHex(txToSign.raw);
+    var txb = bitcoinjs.TransactionBuilder.fromTransaction(transaction);
 
-    for (var i = 0; i < txToSign.inputs_to_sign.length; i++) {
-        transaction.sign(txToSign.inputs_to_sign[i].index, privateKey, bitcoinjs.Transaction.SIGHASH_ALL);
-    }
+    txToSign.inputs_to_sign.forEach(function (input, i) {
+       txb.sign(i, privateKey);
+    });
 
-    return transaction.toHex();
+    return txb.buildIncomplete().toHex();
 };
 
 module.exports = TestUtils;

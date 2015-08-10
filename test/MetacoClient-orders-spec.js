@@ -6,7 +6,7 @@ describe('MetacoClient (Orders)', function () {
         this.client = TestUtils.getMetacoAuthenticatedClient()
             .makeClient();
     });
-    it("should process an asset order", function (done) {
+    it("should process an asset order (Asset - Created)", function (done) {
         var _this = this;
 
         this.client.createOrderFromAssetAmount(
@@ -35,7 +35,7 @@ describe('MetacoClient (Orders)', function () {
 
                     _this.client.submitSignedOrder(order.id, signedTransaction, function (err, signatureResult) {
                         if (err) {
-                            fail("Failed to sign order : " + err );
+                            fail("Failed to sign order : " + JSON.stringify(err) );
                             return done();
                         }
 
@@ -56,7 +56,7 @@ describe('MetacoClient (Orders)', function () {
 
                                 _this.client.getOrders(function (err, ordersList) {
                                     if (err) {
-                                        fail("Failed to get all orders : " + err );
+                                        fail("Failed to get all orders : " + JSON.stringify(err) );
                                         return done();
                                     }
 
@@ -75,23 +75,23 @@ describe('MetacoClient (Orders)', function () {
         });
     }, 60000);
 
-    it("should be able to cancel an order", function (done) {
+    it("should be able to cancel an order (Satoshi - created)", function (done) {
         var _this = this;
 
-        this.client.createOrderFromAssetAmount(
+        this.client.createOrderFromSatoshiAmount(
             "bid",
             "MTC:USD",
-            100,
+            300000,
             TestUtils.getBitcoinAddress(),
             TestUtils.getBitcoinAddress(),
             null,
             null,
             function (err, order) {
                 if (err) {
-                    fail("Failed to create order : " + err);
+                    fail("Failed to create order : " + JSON.stringify(err));
                     return done();
                 }
-                expect(order.amount_asset).toBe(100);
+                expect(order.amount_satoshi).toBe(300000);
                 expect(order.ticker).toBe("MTC:USD");
 
                 _this.client.cancelOrder(order.id, function (err, result) {

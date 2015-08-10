@@ -16,7 +16,7 @@ describe('MetacoClient (Accounts)', function () {
         this.client.registerAccount("+15005550007", function (err, account) {
             if (err) {
                 console.log(err);
-                fail("Account registration failed : " + err);
+                fail("Account registration failed : " + JSON.stringify(err));
                 return done();
             }
 
@@ -35,7 +35,7 @@ describe('MetacoClient (Accounts)', function () {
             newClient.confirmPhoneNumber(code, function (err, result) {
                 if (err) {
                     console.log(err);
-                    fail("Account validation failed : " + err);
+                    fail("Account validation failed : " + JSON.stringify(err));
                     return done();
                 }
 
@@ -57,7 +57,7 @@ describe('MetacoClient (Accounts)', function () {
                             return done();
                         }
 
-                        fail("Account validated two times : " + err);
+                        fail("Account validated two times : " + JSON.stringify(result));
                         return done();
                     });
                 });
@@ -72,7 +72,7 @@ describe('MetacoClient (Accounts)', function () {
                 return done();
             }
 
-            fail("Invalid account registered : " + err);
+            fail("Invalid account registered : " + JSON.stringify(err));
             return done();
         });
     });
@@ -84,7 +84,7 @@ describe('MetacoClient (Accounts)', function () {
                 return done();
             }
 
-            fail("Fetched invalid account : " + err);
+            fail("Fetched invalid account : " + JSON.stringify(accountStatus));
             return done();
         });
     });

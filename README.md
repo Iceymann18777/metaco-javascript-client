@@ -19,7 +19,7 @@ npm install metaco-client
 Installation - Browser
 ----------------------------------------------
 
-For the browser, we're providing a browserified version of the node-js library, you can found it in our [dist/ folder](https://github.com/MetacoSA/metaco-javascript-client/tree/master/dist)
+For the browser, we're providing a browserified version of the node-js library, you can find it in our [dist/ folder](https://github.com/MetacoSA/metaco-javascript-client/tree/master/dist)
 
 Usage
 ----------------------------------------------

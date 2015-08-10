@@ -5,21 +5,32 @@
 Our Javascript Client implements every single functionality of the API.
 You can find a detailed documentation here : [API Documentation](http://docs.metaco.apiary.io/).
 
-Installation - NodeJS
+This library works in NodeJS and in the Browser. We developped it using the [commonjs](http://www.commonjs.org/specs/modules/1.0/) spec, and we're using [browserify](http://browserify.org/) to bundle the library into a single file usable in the browser.
+
+The NodeJS version uses [Request](https://github.com/request/request) as its only dependency, the Browser version (bundled by us) has no dependency.
+
+Installation
 ----------------------------------------------
 
-### Using npm
-
-To install the latest official version, use NPM:
+### Using npm (Nodejs)
 
 ```sh
 npm install metaco-client
 ```
 
-Installation - Browser
-----------------------------------------------
+### Using bower (Browser)
 
-For the browser, we're providing a browserified version of the node-js library, you can find it in our [dist/ folder](https://github.com/MetacoSA/metaco-javascript-client/tree/master/dist)
+```sh
+bower install metaco-client
+```
+
+### Manually
+
+For nodejs, you can clone our repository, you will get the latest version available.
+
+For the browser :
+* You can download our latest [releases on github](https://github.com/MetacoSA/metaco-javascript-client/releases) or in our [dist folder](https://github.com/MetacoSA/metaco-javascript-client/tree/master/dist).
+* You can clone our repository and run gulp buildBrowser to get the latest bundled version.
 
 Usage
 ----------------------------------------------
@@ -54,6 +65,7 @@ Contributing
 Known Issues / Gotcha
 ----------------------------------------------
 * The api is still unstable.
+* The tests are only on the browser side at the moment.
 
 License
 ----------------------------------------------

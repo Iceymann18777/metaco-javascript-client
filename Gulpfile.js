@@ -40,3 +40,5 @@ gulp.task("github-releases", function () {
             manifest: require('./package.json')
         }));
 });
+
+gulp.task("publish", ["buildBrowser", "github-releases"]);

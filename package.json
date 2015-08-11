@@ -25,6 +25,7 @@
     "karma-phantomjs-launcher": "^0.2.0",
     "karma-phantomjs-shim": "^1.0.0",
     "karma-source-map-support": "^1.0.0",
+    "karma-teamcity-reporter": "^0.2.0",
     "phantomjs": "^1.9.17",
     "vinyl-buffer": "^1.0.0",
     "vinyl-source-stream": "^1.1.0"

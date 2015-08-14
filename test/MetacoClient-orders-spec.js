@@ -54,7 +54,7 @@ describe('MetacoClient (Orders)', function () {
                                     return done();
                                 }
 
-                                _this.client.getOrders(function (err, ordersList) {
+                                _this.client.getOrders(null, null, function (err, ordersList) {
                                     if (err) {
                                         fail("Failed to get all orders : " + JSON.stringify(err) );
                                         return done();
@@ -106,6 +106,19 @@ describe('MetacoClient (Orders)', function () {
                     });
                 });
             });
+    }, 60000);
+
+    it("should get the paginated orders", function (done) {
+        this.client.getOrders(0, 1, function (err, ordersList) {
+            if (err) {
+                fail("Failed to get paginated orders : " + JSON.stringify(err) );
+                return done();
+            }
+
+            expect(ordersList).not.toBe(null);
+            expect(ordersList.orders.length).toBe(1);
+            return done();
+        });
     }, 60000);
 
     function orderIsInList(orders, id) {

@@ -83,7 +83,7 @@ describe('MetacoClient (Orders)', function () {
     }, 60000);
 
     it("should get the wallet details", function (done) {
-        this.client.getWalletDetails(TestUtils.getBitcoinAddress(), function (err, wallet) {
+        this.client.getWalletDetails(TestUtils.getBitcoinAddress(), null, null, function (err, wallet) {
             if (err) {
                 fail("Failed to get the wallet details : " + err );
                 return done();
@@ -91,6 +91,20 @@ describe('MetacoClient (Orders)', function () {
 
             expect(wallet).not.toBe(null);
             expect(wallet.addresses[0]).toBe(TestUtils.getBitcoinAddress());
+            return done();
+        })
+    }, 60000);
+
+    it("should get the paginated wallet details", function (done) {
+        this.client.getWalletDetails(TestUtils.getBitcoinAddress(), 0, 1, function (err, wallet) {
+            if (err) {
+                fail("Failed to get the wallet details : " + err );
+                return done();
+            }
+
+            expect(wallet).not.toBe(null);
+            expect(wallet.addresses[0]).toBe(TestUtils.getBitcoinAddress());
+            expect(wallet.transactions.length).toBe(1);
             return done();
         })
     }, 60000);

@@ -252,13 +252,39 @@ MetacoClient.prototype.createOrderFromAssetAmount = function(type, ticker, amoun
 
 /**
  * Requires Authentication
- * Returns the user's orders
+ * Returns the user's orders (paginated)
  *
  * @see {@link http://docs.metaco.apiary.io/#reference/orders/orders-management/list-all-orders} our online documentation.
+ * @param {number} pageNumber - The page number (default to 0)
+ * @param {number} pageSize - The page number (default and maximum to 500)
  * @param {requestCallback} callback - The callback that handles the response
  */
-MetacoClient.prototype.getOrders = function(callback) {
-    this.httpClient.doGet("orders", callback);
+MetacoClient.prototype.getOrders = function(pageNumber, pageSize, callback) {
+
+    var url = "orders";
+
+    var firstParam = true;
+
+    if(pageNumber) {
+        if (firstParam) {
+            url += "?";
+            firstParam = false;
+        } else {
+            url += "&";
+        }
+        url += "pageNumber=" + pageNumber;
+    }
+
+    if(pageSize) {
+        if (firstParam) {
+            url += "?";
+        } else {
+            url += "&";
+        }
+        url += "pageSize=" + pageSize;
+    }
+
+    this.httpClient.doGet(url, callback);
 };
 
 /**
@@ -414,14 +440,38 @@ MetacoClient.prototype.broadcastTransaction = function(rawTransaction, callback)
 /**
  * Requires Authentication
  * Returns the current wallet state
- * Contains the current balances, the values and the transaction history
+ * Contains the current balances, the values and the transaction history (paginated)
  *
  * @param {string} address - The wallet's address
+ * @param {number} pageNumber - The page number (default to 0)
+ * @param {number} pageSize - The page number (default and maximum to 500)
  * @param {requestCallback} callback - The callback that handles the response
  * @see {@link http://docs.metaco.apiary.io/#reference/transactions/transaction-broadcast/fetch-wallet-information} our online documentation.
  */
-MetacoClient.prototype.getWalletDetails = function(address, callback) {
+MetacoClient.prototype.getWalletDetails = function(address, pageNumber, pageSize, callback) {
     var url = extensions.formatString("transactions/{0}", address);
+
+    var firstParam = true;
+
+    if(pageNumber) {
+        if (firstParam) {
+            url += "?";
+            firstParam = false;
+        } else {
+            url += "&";
+        }
+        url += "pageNumber=" + pageNumber;
+    }
+
+    if(pageSize) {
+        if (firstParam) {
+            url += "?";
+        } else {
+            url += "&";
+        }
+        url += "pageSize=" + pageSize;
+    }
+
     this.httpClient.doGet(url, callback);
 };
 

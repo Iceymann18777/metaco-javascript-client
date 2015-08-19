@@ -5,7 +5,7 @@ var assetsList = [];
 
 var builder = metaco.GetClientBuilder();
 
-var client = builder.withApiUrl("http://api.testnet.metaco.com/v1/").makeClient();
+var client = builder.withApiUrl("https://api.testnet.metaco.com/v1/").makeClient();
 
 client.getAssets(function(err, assets) {
     if (err) {

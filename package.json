@@ -1,9 +1,10 @@
 {
   "name": "metaco-client",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "The official javascript client for the Metaco API",
   "main": "lib/index.js",
   "dependencies": {
+    "bs58check": "^1.0.6",
     "request": "^2.60.0"
   },
   "devDependencies": {

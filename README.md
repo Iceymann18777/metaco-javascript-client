@@ -5,9 +5,7 @@
 Our Javascript Client implements every single functionality of the API.
 You can find a detailed documentation here : [API Documentation](http://docs.metaco.apiary.io/).
 
-This library works in NodeJS and in the Browser. We developped it using the [commonjs](http://www.commonjs.org/specs/modules/1.0/) spec, and we're using [browserify](http://browserify.org/) to bundle the library into a single file usable in the browser.
-
-The NodeJS version uses [Request](https://github.com/request/request) as its only dependency, the Browser version (bundled by us) has no dependency.
+This library works in NodeJS and in the Browser. We developed it using the [commonjs](http://www.commonjs.org/specs/modules/1.0/) spec, and we're using [browserify](http://browserify.org/) to bundle the library into a single file usable in the browser.
 
 Installation
 ----------------------------------------------

@@ -80,7 +80,7 @@ MetacoClient.prototype.registerAccount = function(phoneNumber, providerId, callb
         phone: phoneNumber
     };
 
-    if (typeof providerId === "Function") {
+    if (typeof providerId === "function") {
         callback = providerId;
     } else {
         if (providerId !== null && providerId !== ""){

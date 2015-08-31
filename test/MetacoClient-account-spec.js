@@ -13,7 +13,7 @@ describe('MetacoClient (Accounts)', function () {
 
         /** Account registration **/
 
-        this.client.registerAccount("+15005550007", function (err, account) {
+        this.client.registerAccount("+15005550007", "TestsProvider", function (err, account) {
             if (err) {
                 console.log(err);
                 fail("Account registration failed : " + JSON.stringify(err));

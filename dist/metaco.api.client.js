@@ -65,16 +65,29 @@ function MetacoClient(HttpClient, metacoApiUrl, metacoApiId, metacoApiKey, metac
  * Sends an SMS to the provided phone number
  * Returns the API ID and API Keys
  *
+ * If you are a wallet registering accounts for your clients, don't forget to set the provider_id with your Name/ID.
+ *
  * If you are in debug mode, this request will return a HTTP header X-Metaco-DebugData with the validation code, it won't be send by SMS
  *
  * @see {@link http://docs.metaco.apiary.io/#reference/account/account-management/register-an-account} our online documentation.
  * @param {string} phoneNumber - The account phone number (E164 format)
+ * @param {string} providerId - OPTIONAl - Set this to your Name/ID if you are creating wallets for your own users
  * @param {requestCallback} callback - The callback that handles the response
  */
-MetacoClient.prototype.registerAccount = function(phoneNumber, callback) {
+MetacoClient.prototype.registerAccount = function(phoneNumber, providerId, callback) {
+
     var registerRequest = {
         phone: phoneNumber
     };
+
+    if (typeof providerId === "Function") {
+        callback = providerId;
+    } else {
+        if (providerId !== null && providerId !== ""){
+            registerRequest.provider_id = providerId;
+        }
+    }
+
     this.httpClient.doPost("account", registerRequest, callback);
 };
 
